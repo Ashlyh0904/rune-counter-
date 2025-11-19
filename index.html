@@ -419,8 +419,8 @@
         let isCounting = false;
         let historyRecords = [];
         
-        // 从本地存储加载历史记录
-        loadHistory();
+        // 从本地存储加载历史记录和当前计数状态
+        loadAllData();
         
         // 生成21-33号符文按钮
         for (let i = 21; i <= 33; i++) {
@@ -448,11 +448,17 @@
                 isCounting = true;
                 startTime = new Date();
                 timeDisplay.textContent = `时间: ${formatTime(startTime)}`;
+                
+                // 保存当前状态到本地存储
+                saveCurrentState();
             }
             
             // 增加计数
             count++;
             counterDisplay.textContent = count;
+            
+            // 保存当前状态到本地存储
+            saveCurrentState();
         });
         
         // 结束计数并记录符文
@@ -473,6 +479,9 @@
                 historyRecords.unshift(record);
                 saveHistory();
                 displayHistory();
+                
+                // 清除当前计数状态
+                clearCurrentState();
                 
                 // 重置计数器显示
                 count = 0;
@@ -518,13 +527,29 @@
             });
         }
         
+        // 保存当前计数状态到本地存储
+        function saveCurrentState() {
+            const currentState = {
+                count: count,
+                startTime: startTime,
+                isCounting: isCounting
+            };
+            localStorage.setItem('runeCounterCurrentState', JSON.stringify(currentState));
+        }
+        
+        // 清除当前计数状态
+        function clearCurrentState() {
+            localStorage.removeItem('runeCounterCurrentState');
+        }
+        
         // 保存历史记录到本地存储
         function saveHistory() {
             localStorage.setItem('runeCounterHistory', JSON.stringify(historyRecords));
         }
         
-        // 从本地存储加载历史记录
-        function loadHistory() {
+        // 从本地存储加载所有数据
+        function loadAllData() {
+            // 加载历史记录
             const savedHistory = localStorage.getItem('runeCounterHistory');
             if (savedHistory) {
                 historyRecords = JSON.parse(savedHistory);
@@ -537,6 +562,23 @@
                 historyRecords.sort((a, b) => b.startTime - a.startTime);
                 displayHistory();
             }
+            
+            // 加载当前计数状态
+            const savedState = localStorage.getItem('runeCounterCurrentState');
+            if (savedState) {
+                const currentState = JSON.parse(savedState);
+                count = currentState.count || 0;
+                startTime = currentState.startTime ? new Date(currentState.startTime) : null;
+                isCounting = currentState.isCounting || false;
+                
+                // 更新显示
+                counterDisplay.textContent = count;
+                if (isCounting && startTime) {
+                    timeDisplay.textContent = `时间: ${formatTime(startTime)}`;
+                } else {
+                    timeDisplay.textContent = '时间: 尚未开始计数';
+                }
+            }
         }
         
         // 重置按钮点击事件
@@ -546,6 +588,9 @@
             timeDisplay.textContent = '时间: 尚未开始计数';
             isCounting = false;
             startTime = null;
+            
+            // 清除当前状态
+            clearCurrentState();
         });
         
         // 清空历史记录按钮点击事件
@@ -566,6 +611,18 @@
         function padZero(num) {
             return num.toString().padStart(2, '0');
         }
+        
+        // 在页面关闭前保存当前状态
+        window.addEventListener('beforeunload', () => {
+            saveCurrentState();
+        });
+        
+        // 在页面可见性变化时保存状态（例如切换到其他标签页或应用）
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                saveCurrentState();
+            }
+        });
     </script>
 </body>
 </html>
