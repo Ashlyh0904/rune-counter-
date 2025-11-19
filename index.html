@@ -474,8 +474,18 @@
             text-align: center;
         }
         
+        .new-function-history-header-duration {
+            width: 50px;
+            text-align: center;
+        }
+        
         .new-function-history-header-count {
             width: 40px;
+            text-align: center;
+        }
+        
+        .new-function-history-header-avg-time {
+            width: 60px;
             text-align: center;
         }
         
@@ -514,11 +524,25 @@
             color: #ddd;
         }
         
+        .new-function-history-duration {
+            width: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
         .new-function-history-count {
             width: 40px;
             text-align: center;
             font-weight: bold;
             color: #4CAF50;
+        }
+        
+        .new-function-history-avg-time {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff9800;
         }
         
         .new-function-history-runes {
@@ -623,6 +647,16 @@
             .new-function-history-end-time {
                 width: 50px;
             }
+            
+            .new-function-history-header-duration,
+            .new-function-history-duration {
+                width: 45px;
+            }
+            
+            .new-function-history-header-avg-time,
+            .new-function-history-avg-time {
+                width: 55px;
+            }
         }
         
         /* 防止双击缩放和选择文本 */
@@ -720,7 +754,9 @@
                         <div class="new-function-history-header-number">#</div>
                         <div class="new-function-history-header-start-time">开始时间</div>
                         <div class="new-function-history-header-end-time">结束时间</div>
+                        <div class="new-function-history-header-duration">时长</div>
                         <div class="new-function-history-header-count">计数</div>
+                        <div class="new-function-history-header-avg-time">单次时长</div>
                         <div class="new-function-history-header-runes">恭喜出货</div>
                     </div>
                     <div class="new-function-history-empty" id="newFunctionHistoryEmpty">暂无记录，请开始计数</div>
@@ -886,12 +922,18 @@
                 newIsCounting = false;
                 newEndTime = new Date();
                 
+                // 计算时长和单次时长
+                const duration = Math.round((newEndTime - newFirstClickTime) / (1000 * 60)); // 分钟
+                const avgTime = newCount > 0 ? (duration / newCount).toFixed(2) : "0.00";
+                
                 // 创建记录对象
                 const record = {
                     firstClickTime: newFirstClickTime,
                     count: newCount,
                     endTime: newEndTime,
-                    runeRecords: [...newRuneRecords] // 复制数组
+                    runeRecords: [...newRuneRecords], // 复制数组
+                    duration: duration,
+                    avgTime: avgTime
                 };
                 
                 // 添加到历史记录
@@ -1038,7 +1080,9 @@
                     <div class="new-function-history-number">${sequenceNumber}</div>
                     <div class="new-function-history-start-time">${formatTime(record.firstClickTime)}</div>
                     <div class="new-function-history-end-time">${formatTimeShort(record.endTime)}</div>
+                    <div class="new-function-history-duration">${record.duration}</div>
                     <div class="new-function-history-count">${record.count}</div>
+                    <div class="new-function-history-avg-time">${record.avgTime}</div>
                     <div class="new-function-history-runes">${runeText}</div>
                 `;
                 
