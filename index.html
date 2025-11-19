@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="符文计数器">
-    <title>符文计数器</title>
+    <meta name="apple-mobile-web-app-title" content="一分耕耘 一分收获">
+    <title>一分耕耘 一分收获</title>
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiNGREJCMjIiLz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSIjRkZGIiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHg9IjQ4IiB5PSI0OCI+CjxwYXRoIGQ9Ik0yNTYgODBDMTY0LjEgODAgOTIgMTUyLjEgOTIgMjQ0YzAgOTEuOSA3Mi4xIDE2NCAxNjQgMTY0czE2NC03Mi4xIDE2NC0xNjRTMzQ3LjkgODAgMjU2IDgwek0yNTYgNDE2Yy05NC44IDAtMTcyLTc3LjItMTcyLTE3MnM3Ny4yLTE3MiAxNzItMTcyczE3MiA3Ny4yIDE3MiAxNzJTNTAuOCA0MTYgMjU2IDQxNnpNMjU2IDI0OGMtMTcuNyAwLTMyLTE0LjMtMzItMzJzMTQuMy0zMiAzMi0zMnMzMiAxNC4zIDMyIDMyUzI3My43IDI0OCAyNTYgMjQ4ek0yODggMzUyYzAgMTcuNy0xNC4zIDMyLTMyIDMycy0zMi0xNC4zLTMyLTMyczE0LjMtMzIgMzItMzJTMjg4IDMzNC4zIDI4OCAzNTJ6Ii8+Cjwvc3ZnPgo8L3N2Zz4K">
     <style>
         * {
@@ -45,42 +45,84 @@
             margin-bottom: 15px;
             font-size: 1.5rem;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            color: #ffcc00;
+            font-weight: bold;
         }
         
-        .counter-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* 原有功能区域样式 */
+        .original-function-section {
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 2px solid #ffcc00;
             margin-bottom: 20px;
         }
         
-        .counter-display {
-            font-size: 3rem;
+        .original-function-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #ffcc00;
+        }
+        
+        .original-function-counter {
+            font-size: 2.5rem;
             font-weight: bold;
             margin: 10px 0;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-align: center;
         }
         
-        .time-display {
+        .original-function-time {
             font-size: 0.9rem;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: #ffcc00;
             text-align: center;
         }
         
-        .increment-btn {
-            background: linear-gradient(to right, #4CAF50, #45a049);
+        .original-function-button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .original-function-increment-btn {
+            background: linear-gradient(to right, #9C27B0, #673AB7);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
+            padding: 10px 25px;
+            font-size: 0.9rem;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 200px;
             -webkit-appearance: none;
+            flex: 1;
+            max-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+        }
+        
+        .original-function-reset-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: none;
+            flex: 1;
+            max-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
         }
         
         .runes-section {
@@ -139,9 +181,6 @@
         
         .history-section {
             margin-top: 10px;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
         }
         
         .history-title {
@@ -243,7 +282,7 @@
             font-size: 0.85rem;
         }
         
-        .reset-btn {
+        .clear-history-btn {
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             color: white;
             border: none;
@@ -254,14 +293,262 @@
             transition: all 0.3s ease;
             margin-top: 5px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            width: 48%;
+            width: 100%;
+            max-width: 200px;
+            -webkit-appearance: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+        }
+        
+        /* 新增功能区域样式 */
+        .new-function-section {
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 2px solid #ffcc00;
+        }
+        
+        .new-function-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #ffcc00;
+        }
+        
+        .new-function-counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .new-function-time {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #ffcc00;
+            text-align: center;
+        }
+        
+        .new-function-rune-record {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            color: #ffcc00;
+            text-align: center;
+            min-height: 20px;
+        }
+        
+        .new-function-button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .new-function-increment-btn {
+            background: linear-gradient(to right, #9C27B0, #673AB7);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: none;
+            flex: 1;
+            max-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+        }
+        
+        .new-function-end-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: none;
+            flex: 1;
+            max-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+        }
+        
+        .new-function-runes-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+        
+        .new-function-rune-btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            height: 45px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3px;
+            line-height: 1.1;
             -webkit-appearance: none;
         }
         
-        .button-group {
+        .new-function-rune-btn-rare {
+            background: linear-gradient(135deg, #ffd700, #ff9800);
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .new-function-rune-number {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .new-function-rune-name {
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .new-function-history-section {
+            margin-top: 15px;
+        }
+        
+        .new-function-history-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #ffcc00;
+        }
+        
+        .new-function-history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 12px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .new-function-history-header {
             display: flex;
             justify-content: space-between;
-            margin-top: 12px;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            color: #ffcc00;
+        }
+        
+        .new-function-history-header-number {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .new-function-history-header-start-time {
+            flex: 1.2;
+            text-align: left;
+        }
+        
+        .new-function-history-header-end-time {
+            width: 60px;
+            text-align: center;
+        }
+        
+        .new-function-history-header-count {
+            width: 40px;
+            text-align: center;
+        }
+        
+        .new-function-history-header-runes {
+            width: 80px;
+            text-align: center;
+        }
+        
+        .new-function-history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            margin-bottom: 5px;
+            border-left: 3px solid #ffcc00;
+            font-size: 0.8rem;
+        }
+        
+        .new-function-history-number {
+            width: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .new-function-history-start-time {
+            flex: 1.2;
+            color: #ddd;
+        }
+        
+        .new-function-history-end-time {
+            width: 60px;
+            text-align: center;
+            color: #ddd;
+        }
+        
+        .new-function-history-count {
+            width: 40px;
+            text-align: center;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .new-function-history-runes {
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff9800;
+        }
+        
+        .new-function-clear-history-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 200px;
+            -webkit-appearance: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
         }
         
         /* iPhone优化 */
@@ -274,25 +561,30 @@
                 font-size: 1.3rem;
             }
             
-            .counter-display {
-                font-size: 2.5rem;
+            .original-function-counter,
+            .new-function-counter {
+                font-size: 2.2rem;
             }
             
-            .runes-container {
+            .runes-container,
+            .new-function-runes-container {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 5px;
             }
             
-            .rune-btn {
+            .rune-btn,
+            .new-function-rune-btn {
                 height: 42px;
                 font-size: 0.85rem;
             }
             
-            .rune-number {
+            .rune-number,
+            .new-function-rune-number {
                 font-size: 0.7rem;
             }
             
-            .rune-name {
+            .rune-name,
+            .new-function-rune-name {
                 font-size: 0.8rem;
             }
             
@@ -307,36 +599,53 @@
                 width: 70px;
             }
             
-            .button-group {
+            .original-function-button-group,
+            .new-function-button-group {
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
             }
             
-            .reset-btn {
+            .original-function-increment-btn,
+            .original-function-reset-btn,
+            .new-function-increment-btn,
+            .new-function-end-btn {
                 width: 100%;
                 max-width: 200px;
-                margin-bottom: 8px;
+            }
+            
+            .new-function-history-header-start-time,
+            .new-function-history-start-time {
+                flex: 1;
+            }
+            
+            .new-function-history-header-end-time,
+            .new-function-history-end-time {
+                width: 50px;
             }
         }
         
         /* 防止双击缩放和选择文本 */
-        button, .history-item {
+        button, .history-item, .new-function-history-item {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             user-select: none;
         }
         
         /* 滚动条样式 */
-        .history-list::-webkit-scrollbar {
+        .history-list::-webkit-scrollbar,
+        .new-function-history-list::-webkit-scrollbar {
             width: 6px;
         }
         
-        .history-list::-webkit-scrollbar-track {
+        .history-list::-webkit-scrollbar-track,
+        .new-function-history-list::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
         
-        .history-list::-webkit-scrollbar-thumb {
+        .history-list::-webkit-scrollbar-thumb,
+        .new-function-history-list::-webkit-scrollbar-thumb {
             background: #ffcc00;
             border-radius: 3px;
         }
@@ -351,52 +660,99 @@
     </style>
 </head>
 <body>
-    <h1>符文计数器</h1>
+    <h1>一分耕耘 一分收获</h1>
     
     <div class="container">
-        <div class="counter-section">
-            <div class="counter-display" id="counter">0</div>
-            <div class="time-display" id="timeDisplay">时间: 尚未开始计数</div>
-            <button class="increment-btn" id="incrementBtn">+1</button>
-        </div>
-        
-        <div class="runes-section">
-            <div class="runes-title">出货啦</div>
-            <div class="runes-container" id="runesContainer">
-                <!-- 符文按钮将通过JavaScript生成 -->
+        <!-- 原有功能区域 -->
+        <div class="original-function-section">
+            <div class="original-function-title">符文记录</div>
+            <div class="original-function-counter" id="counter">0</div>
+            <div class="original-function-time" id="timeDisplay">时间: 尚未开始计数</div>
+            
+            <div class="original-function-button-group">
+                <button class="original-function-increment-btn" id="incrementBtn">点击计数</button>
+                <button class="original-function-reset-btn" id="resetBtn">重置计数</button>
             </div>
-        </div>
-        
-        <div class="history-section">
-            <div class="history-title">历史记录</div>
-            <div class="history-list" id="historyList">
-                <div class="history-header">
-                    <div class="history-header-number">#</div>
-                    <div class="history-header-time">时间</div>
-                    <div class="history-header-count">计数</div>
-                    <div class="history-header-rune">恭喜出货</div>
+            
+            <div class="runes-section">
+                <div class="runes-title">出货啦</div>
+                <div class="runes-container" id="runesContainer">
+                    <!-- 符文按钮将通过JavaScript生成 -->
                 </div>
-                <div class="history-empty" id="historyEmpty">暂无记录，请开始计数并选择符文</div>
             </div>
-            <div class="button-group">
-                <button class="reset-btn" id="resetBtn">重置计数器</button>
-                <button class="reset-btn" id="clearHistoryBtn">清空历史记录</button>
+            
+            <div class="history-section">
+                <div class="history-title">历史记录</div>
+                <div class="history-list" id="historyList">
+                    <div class="history-header">
+                        <div class="history-header-number">#</div>
+                        <div class="history-header-time">时间</div>
+                        <div class="history-header-count">计数</div>
+                        <div class="history-header-rune">恭喜出货</div>
+                    </div>
+                    <div class="history-empty" id="historyEmpty">暂无记录，请开始计数并选择符文</div>
+                </div>
+                <button class="clear-history-btn" id="clearHistoryBtn">清空历史记录</button>
+            </div>
+        </div>
+        
+        <!-- 新增功能区域 -->
+        <div class="new-function-section">
+            <div class="new-function-title">K3C记录</div>
+            <div class="new-function-counter" id="newCounter">0</div>
+            <div class="new-function-time" id="newTimeDisplay">第一次点击时间: 尚未开始</div>
+            <div class="new-function-rune-record" id="newRuneRecord">符文记录: 无</div>
+            
+            <div class="new-function-button-group">
+                <button class="new-function-increment-btn" id="newIncrementBtn">点击计数</button>
+                <button class="new-function-end-btn" id="newEndBtn">结束计数</button>
+            </div>
+            
+            <div class="runes-title">符文记录</div>
+            <div class="new-function-runes-container" id="newRunesContainer">
+                <!-- 新符文按钮将通过JavaScript生成 -->
+            </div>
+            
+            <div class="new-function-history-section">
+                <div class="new-function-history-title">历史记录</div>
+                <div class="new-function-history-list" id="newFunctionHistoryList">
+                    <div class="new-function-history-header">
+                        <div class="new-function-history-header-number">#</div>
+                        <div class="new-function-history-header-start-time">开始时间</div>
+                        <div class="new-function-history-header-end-time">结束时间</div>
+                        <div class="new-function-history-header-count">计数</div>
+                        <div class="new-function-history-header-runes">恭喜出货</div>
+                    </div>
+                    <div class="new-function-history-empty" id="newFunctionHistoryEmpty">暂无记录，请开始计数</div>
+                </div>
+                <button class="new-function-clear-history-btn" id="newFunctionClearHistoryBtn">清空历史记录</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 获取DOM元素
+        // 获取DOM元素 - 原有功能
         const counterDisplay = document.getElementById('counter');
         const timeDisplay = document.getElementById('timeDisplay');
         const incrementBtn = document.getElementById('incrementBtn');
+        const resetBtn = document.getElementById('resetBtn');
         const runesContainer = document.getElementById('runesContainer');
         const historyList = document.getElementById('historyList');
         const historyEmpty = document.getElementById('historyEmpty');
-        const resetBtn = document.getElementById('resetBtn');
         const clearHistoryBtn = document.getElementById('clearHistoryBtn');
         
-        // 符文名称映射 - 已将24号符文从"伊思特"修正为"伊司特"
+        // 获取DOM元素 - 新增功能
+        const newCounterDisplay = document.getElementById('newCounter');
+        const newTimeDisplay = document.getElementById('newTimeDisplay');
+        const newRuneRecord = document.getElementById('newRuneRecord');
+        const newIncrementBtn = document.getElementById('newIncrementBtn');
+        const newEndBtn = document.getElementById('newEndBtn');
+        const newRunesContainer = document.getElementById('newRunesContainer');
+        const newFunctionHistoryList = document.getElementById('newFunctionHistoryList');
+        const newFunctionHistoryEmpty = document.getElementById('newFunctionHistoryEmpty');
+        const newFunctionClearHistoryBtn = document.getElementById('newFunctionClearHistoryBtn');
+        
+        // 符文名称映射
         const runeNames = {
             21: "普尔",
             22: "乌姆",
@@ -413,16 +769,24 @@
             33: "佐德"
         };
         
-        // 初始化变量
+        // 初始化变量 - 原有功能
         let count = 0;
         let startTime = null;
         let isCounting = false;
         let historyRecords = [];
         
+        // 初始化变量 - 新增功能
+        let newCount = 0;
+        let newFirstClickTime = null;
+        let newIsCounting = false;
+        let newEndTime = null;
+        let newRuneRecords = []; // 记录点击的符文
+        let newFunctionHistoryRecords = [];
+        
         // 从本地存储加载历史记录和当前计数状态
         loadAllData();
         
-        // 生成21-33号符文按钮
+        // 生成21-33号符文按钮 - 原有功能
         for (let i = 21; i <= 33; i++) {
             const runeBtn = document.createElement('button');
             runeBtn.className = 'rune-btn';
@@ -441,7 +805,26 @@
             runesContainer.appendChild(runeBtn);
         }
         
-        // +1按钮点击事件
+        // 生成21-33号符文按钮 - 新增功能
+        for (let i = 21; i <= 33; i++) {
+            const runeBtn = document.createElement('button');
+            runeBtn.className = 'new-function-rune-btn';
+            
+            // 为28-33号符文添加特殊样式
+            if (i >= 28) {
+                runeBtn.classList.add('new-function-rune-btn-rare');
+            }
+            
+            runeBtn.innerHTML = `
+                <div class="new-function-rune-number">${i}#</div>
+                <div class="new-function-rune-name">${runeNames[i]}</div>
+            `;
+            
+            runeBtn.addEventListener('click', () => recordRuneClick(i));
+            newRunesContainer.appendChild(runeBtn);
+        }
+        
+        // +1按钮点击事件 - 原有功能
         incrementBtn.addEventListener('click', () => {
             if (!isCounting) {
                 // 开始计数
@@ -461,7 +844,97 @@
             saveCurrentState();
         });
         
-        // 结束计数并记录符文
+        // 重置按钮点击事件 - 原有功能
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            counterDisplay.textContent = count;
+            timeDisplay.textContent = '时间: 尚未开始计数';
+            isCounting = false;
+            startTime = null;
+            
+            // 清除当前状态
+            clearCurrentState();
+        });
+        
+        // 点击计数按钮事件 - 新增功能
+        newIncrementBtn.addEventListener('click', () => {
+            if (!newIsCounting) {
+                // 开始计数
+                newIsCounting = true;
+                newFirstClickTime = new Date();
+                newTimeDisplay.textContent = `第一次点击时间: ${formatTime(newFirstClickTime)}`;
+                
+                // 重置符文记录
+                newRuneRecords = [];
+                updateRuneRecordDisplay();
+                
+                // 保存当前状态
+                saveNewFunctionCurrentState();
+            }
+            
+            // 增加计数
+            newCount++;
+            newCounterDisplay.textContent = newCount;
+            
+            // 保存当前状态
+            saveNewFunctionCurrentState();
+        });
+        
+        // 结束按钮点击事件 - 新增功能
+        newEndBtn.addEventListener('click', () => {
+            if (newIsCounting) {
+                newIsCounting = false;
+                newEndTime = new Date();
+                
+                // 创建记录对象
+                const record = {
+                    firstClickTime: newFirstClickTime,
+                    count: newCount,
+                    endTime: newEndTime,
+                    runeRecords: [...newRuneRecords] // 复制数组
+                };
+                
+                // 添加到历史记录
+                newFunctionHistoryRecords.unshift(record);
+                saveNewFunctionHistory();
+                displayNewFunctionHistory();
+                
+                // 重置计数
+                newCount = 0;
+                newCounterDisplay.textContent = newCount;
+                newTimeDisplay.textContent = '第一次点击时间: 尚未开始';
+                newRuneRecord.textContent = '符文记录: 无';
+                
+                // 清除当前状态
+                clearNewFunctionCurrentState();
+            }
+        });
+        
+        // 记录符文点击 - 新增功能
+        function recordRuneClick(runeNumber) {
+            if (newIsCounting) {
+                // 记录符文点击
+                newRuneRecords.push(runeNumber);
+                updateRuneRecordDisplay();
+                
+                // 保存当前状态
+                saveNewFunctionCurrentState();
+            }
+        }
+        
+        // 更新符文记录显示
+        function updateRuneRecordDisplay() {
+            if (newRuneRecords.length > 0) {
+                // 只显示最近3个符文
+                const displayRunes = newRuneRecords.slice(-3);
+                const runeText = displayRunes.map(rune => `${rune}#`).join(', ');
+                newRuneRecord.textContent = `符文记录: ${runeText}${newRuneRecords.length > 3 ? '...' : ''}`;
+            } else {
+                newRuneRecord.textContent = '符文记录: 无';
+            }
+        }
+        
+        // 结束计数并记录符文 - 原有功能
         function endCounting(runeNumber) {
             if (isCounting) {
                 isCounting = false;
@@ -490,7 +963,7 @@
             }
         }
         
-        // 显示历史记录
+        // 显示历史记录 - 原有功能
         function displayHistory() {
             // 清空历史记录区域（保留标题）
             const historyHeader = historyList.querySelector('.history-header');
@@ -527,7 +1000,53 @@
             });
         }
         
-        // 保存当前计数状态到本地存储
+        // 显示新增功能历史记录
+        function displayNewFunctionHistory() {
+            // 清空历史记录区域（保留标题）
+            const historyHeader = newFunctionHistoryList.querySelector('.new-function-history-header');
+            newFunctionHistoryList.innerHTML = '';
+            newFunctionHistoryList.appendChild(historyHeader);
+            
+            if (newFunctionHistoryRecords.length === 0) {
+                newFunctionHistoryList.appendChild(newFunctionHistoryEmpty);
+                return;
+            }
+            
+            // 隐藏空记录提示
+            newFunctionHistoryEmpty.style.display = 'none';
+            
+            // 添加历史记录项（按时间倒序显示，但序号按从早到晚编号）
+            newFunctionHistoryRecords.forEach((record, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'new-function-history-item';
+                
+                // 计算序号：从早到晚编号（最早的为1号）
+                const sequenceNumber = newFunctionHistoryRecords.length - index;
+                
+                // 格式化符文记录
+                let runeText = "无";
+                if (record.runeRecords.length > 0) {
+                    // 只显示符文号码
+                    const displayRunes = record.runeRecords.slice(0, 3); // 最多显示3个
+                    runeText = displayRunes.map(rune => `${rune}`).join(',');
+                    if (record.runeRecords.length > 3) {
+                        runeText += '...';
+                    }
+                }
+                
+                historyItem.innerHTML = `
+                    <div class="new-function-history-number">${sequenceNumber}</div>
+                    <div class="new-function-history-start-time">${formatTime(record.firstClickTime)}</div>
+                    <div class="new-function-history-end-time">${formatTimeShort(record.endTime)}</div>
+                    <div class="new-function-history-count">${record.count}</div>
+                    <div class="new-function-history-runes">${runeText}</div>
+                `;
+                
+                newFunctionHistoryList.appendChild(historyItem);
+            });
+        }
+        
+        // 保存当前计数状态到本地存储 - 原有功能
         function saveCurrentState() {
             const currentState = {
                 count: count,
@@ -537,19 +1056,40 @@
             localStorage.setItem('runeCounterCurrentState', JSON.stringify(currentState));
         }
         
-        // 清除当前计数状态
+        // 清除当前计数状态 - 原有功能
         function clearCurrentState() {
             localStorage.removeItem('runeCounterCurrentState');
         }
         
-        // 保存历史记录到本地存储
+        // 保存历史记录到本地存储 - 原有功能
         function saveHistory() {
             localStorage.setItem('runeCounterHistory', JSON.stringify(historyRecords));
         }
         
+        // 保存新增功能当前状态到本地存储
+        function saveNewFunctionCurrentState() {
+            const currentState = {
+                count: newCount,
+                firstClickTime: newFirstClickTime,
+                isCounting: newIsCounting,
+                runeRecords: newRuneRecords
+            };
+            localStorage.setItem('newFunctionCurrentState', JSON.stringify(currentState));
+        }
+        
+        // 清除新增功能当前状态
+        function clearNewFunctionCurrentState() {
+            localStorage.removeItem('newFunctionCurrentState');
+        }
+        
+        // 保存新增功能历史记录到本地存储
+        function saveNewFunctionHistory() {
+            localStorage.setItem('newFunctionHistory', JSON.stringify(newFunctionHistoryRecords));
+        }
+        
         // 从本地存储加载所有数据
         function loadAllData() {
-            // 加载历史记录
+            // 加载原有功能历史记录
             const savedHistory = localStorage.getItem('runeCounterHistory');
             if (savedHistory) {
                 historyRecords = JSON.parse(savedHistory);
@@ -563,7 +1103,7 @@
                 displayHistory();
             }
             
-            // 加载当前计数状态
+            // 加载原有功能当前计数状态
             const savedState = localStorage.getItem('runeCounterCurrentState');
             if (savedState) {
                 const currentState = JSON.parse(savedState);
@@ -579,21 +1119,43 @@
                     timeDisplay.textContent = '时间: 尚未开始计数';
                 }
             }
+            
+            // 加载新增功能历史记录
+            const savedNewFunctionHistory = localStorage.getItem('newFunctionHistory');
+            if (savedNewFunctionHistory) {
+                newFunctionHistoryRecords = JSON.parse(savedNewFunctionHistory);
+                // 将时间字符串转换回Date对象
+                newFunctionHistoryRecords.forEach(record => {
+                    record.firstClickTime = new Date(record.firstClickTime);
+                    record.endTime = new Date(record.endTime);
+                });
+                // 按时间倒序排序（最新的在最前面）
+                newFunctionHistoryRecords.sort((a, b) => b.firstClickTime - a.firstClickTime);
+                displayNewFunctionHistory();
+            }
+            
+            // 加载新增功能当前状态
+            const savedNewFunctionState = localStorage.getItem('newFunctionCurrentState');
+            if (savedNewFunctionState) {
+                const currentState = JSON.parse(savedNewFunctionState);
+                newCount = currentState.count || 0;
+                newFirstClickTime = currentState.firstClickTime ? new Date(currentState.firstClickTime) : null;
+                newIsCounting = currentState.isCounting || false;
+                newRuneRecords = currentState.runeRecords || [];
+                
+                // 更新显示
+                newCounterDisplay.textContent = newCount;
+                if (newIsCounting && newFirstClickTime) {
+                    newTimeDisplay.textContent = `第一次点击时间: ${formatTime(newFirstClickTime)}`;
+                    updateRuneRecordDisplay();
+                } else {
+                    newTimeDisplay.textContent = '第一次点击时间: 尚未开始';
+                    newRuneRecord.textContent = '符文记录: 无';
+                }
+            }
         }
         
-        // 重置按钮点击事件
-        resetBtn.addEventListener('click', () => {
-            count = 0;
-            counterDisplay.textContent = count;
-            timeDisplay.textContent = '时间: 尚未开始计数';
-            isCounting = false;
-            startTime = null;
-            
-            // 清除当前状态
-            clearCurrentState();
-        });
-        
-        // 清空历史记录按钮点击事件
+        // 清空历史记录按钮点击事件 - 原有功能
         clearHistoryBtn.addEventListener('click', () => {
             if (confirm('确定要清空所有历史记录吗？此操作不可撤销。')) {
                 historyRecords = [];
@@ -602,9 +1164,23 @@
             }
         });
         
-        // 格式化时间显示
+        // 清空新增功能历史记录按钮点击事件
+        newFunctionClearHistoryBtn.addEventListener('click', () => {
+            if (confirm('确定要清空K3C记录历史吗？此操作不可撤销。')) {
+                newFunctionHistoryRecords = [];
+                saveNewFunctionHistory();
+                displayNewFunctionHistory();
+            }
+        });
+        
+        // 格式化时间显示（完整年月日+时间，只显示到分钟）
         function formatTime(date) {
-            return `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`;
+            return `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+        }
+        
+        // 格式化时间显示（简短，只显示小时和分钟）
+        function formatTimeShort(date) {
+            return `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
         }
         
         // 补零函数
@@ -612,15 +1188,17 @@
             return num.toString().padStart(2, '0');
         }
         
-        // 在页面关闭前保存当前状态
+        // 在页面关闭前保存当前状态 - 原有功能
         window.addEventListener('beforeunload', () => {
             saveCurrentState();
+            saveNewFunctionCurrentState();
         });
         
-        // 在页面可见性变化时保存状态（例如切换到其他标签页或应用）
+        // 在页面可见性变化时保存状态（例如切换到其他标签页或应用）- 原有功能
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 saveCurrentState();
+                saveNewFunctionCurrentState();
             }
         });
     </script>
